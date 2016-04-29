@@ -42,6 +42,18 @@ public class X10Message {
         this.action = action;
     }
 
+    protected String serialize() {
+        byte[] bytes = serializeMessage();
+        StringBuilder builder = new StringBuilder();
+        builder
+                .append(String.format("%8s", Integer.toBinaryString(bytes[0] & 0xFF)).replace(' ', '0'))
+                .append(String.format("%8s", Integer.toBinaryString(bytes[1] & 0xFF)).replace(' ', '0'))
+                .append(String.format("%8s", Integer.toBinaryString(bytes[2] & 0xFF)).replace(' ', '0'))
+                .append(String.format("%8s", Integer.toBinaryString(bytes[3] & 0xFF)).replace(' ', '0'))
+                .append(String.format("%8s", Integer.toBinaryString(bytes[4] & 0xFF)).replace(' ', '0'));
+        return builder.toString().replaceAll(" ", "");
+    }
+
     protected byte[] serializeMessage() {
         byte[] bytes = new byte[5];
 

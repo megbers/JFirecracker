@@ -23,10 +23,13 @@ public class X10ExecutorTest {
     @Test
     public void shouldWriteToSerialPort() throws Exception {
         X10Message message = new X10Message("A", 1, Action.ON);
-        byte[] bytes = message.serializeMessage();
 
         actionExecutorSerial.execute(message);
 
-        Mockito.verify(mockSerialPort).writeBytes(bytes);
+        Mockito.verify(mockSerialPort, Mockito.times(80*3)).sendBreak(1);
+        Mockito.verify(mockSerialPort, Mockito.times(16*3)).setDTR(false);
+        Mockito.verify(mockSerialPort, Mockito.times(64*3)).setDTR(true);
+        Mockito.verify(mockSerialPort, Mockito.times(24*3)).setRTS(false);
+        Mockito.verify(mockSerialPort, Mockito.times(56*3)).setRTS(true);
     }
 }
