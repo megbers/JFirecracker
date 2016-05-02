@@ -51,7 +51,7 @@ public class X10Message {
                 .append(String.format("%8s", Integer.toBinaryString(bytes[2] & 0xFF)).replace(' ', '0'))
                 .append(String.format("%8s", Integer.toBinaryString(bytes[3] & 0xFF)).replace(' ', '0'))
                 .append(String.format("%8s", Integer.toBinaryString(bytes[4] & 0xFF)).replace(' ', '0'));
-        return builder.toString().replaceAll(" ", "");
+        return builder.toString();
     }
 
     protected byte[] serializeMessage() {

@@ -19,13 +19,10 @@ public class X10Executor {
     }
 
     public void execute(X10Message message) throws Exception {
-        //byte[] bytes = message.serializeMessage();
         String commandLine = message.serialize();
 
         serialPort.openPort();
         serialPort.setParams(BAUDRATE_9600, DATABITS_8, STOPBITS_1, PARITY_NONE);
-        // for(int i=0; i<10; i++)
-        //serialPort.writeBytes(bytes);
         for(int t=0;t<3;t++) {
             for (int i = 0; i < commandLine.length(); i++) {
                 if (commandLine.charAt(i) == '1') {
@@ -42,7 +39,6 @@ public class X10Executor {
                 serialPort.sendBreak(1);
             }
         }
-        //serialPort.purgePort(1);
         serialPort.closePort();
     }
 
