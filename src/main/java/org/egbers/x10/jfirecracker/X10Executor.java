@@ -1,6 +1,7 @@
 package org.egbers.x10.jfirecracker;
 
 import jssc.SerialPort;
+
 import static jssc.SerialPort.*;
 
 public class X10Executor {
