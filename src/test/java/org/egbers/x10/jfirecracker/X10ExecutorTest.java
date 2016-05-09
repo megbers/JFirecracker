@@ -26,10 +26,11 @@ public class X10ExecutorTest {
 
         actionExecutorSerial.execute(message);
 
-        Mockito.verify(mockSerialPort, Mockito.times(80*3)).sendBreak(1);
-        Mockito.verify(mockSerialPort, Mockito.times(16*3)).setDTR(false);
-        Mockito.verify(mockSerialPort, Mockito.times(64*3)).setDTR(true);
-        Mockito.verify(mockSerialPort, Mockito.times(24*3)).setRTS(false);
-        Mockito.verify(mockSerialPort, Mockito.times(56*3)).setRTS(true);
+        Mockito.verify(mockSerialPort, Mockito.times(80*X10Executor.REPEAT_COMMAND)).sendBreak(1);
+        Mockito.verify(mockSerialPort, Mockito.times(16*X10Executor.REPEAT_COMMAND)).setDTR(false);
+        Mockito.verify(mockSerialPort, Mockito.times(64*X10Executor.REPEAT_COMMAND)).setDTR(true);
+        Mockito.verify(mockSerialPort, Mockito.times(24*X10Executor.REPEAT_COMMAND)).setRTS(false);
+        Mockito.verify(mockSerialPort, Mockito.times(56*X10Executor.REPEAT_COMMAND)).setRTS(true);
+        Mockito.verify(mockSerialPort, Mockito.times(56*X10Executor.REPEAT_COMMAND)).setRTS(true);
     }
 }

@@ -5,6 +5,7 @@ import jssc.SerialPort;
 import static jssc.SerialPort.*;
 
 public class X10Executor {
+    static final Integer REPEAT_COMMAND = 1;
     private SerialPort serialPort;
 
     public X10Executor(SerialPort serialPort) {
@@ -24,7 +25,7 @@ public class X10Executor {
 
         serialPort.openPort();
         serialPort.setParams(BAUDRATE_9600, DATABITS_8, STOPBITS_1, PARITY_NONE);
-        for(int t=0;t<3;t++) {
+        for(int t=0;t<REPEAT_COMMAND;t++) {
             for (int i = 0; i < commandLine.length(); i++) {
                 if (commandLine.charAt(i) == '1') {
                     serialPort.setRTS(true);
